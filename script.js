@@ -79,12 +79,22 @@ async function renderScatterPlot() {
     .attr("font-size", "11px")
     .attr("text-anchor", "end")
     .attr("writing-mode", "vertical-lr");
+
+    const color = d3.scaleOrdinal()
+    .domain(data, d => d.Region)
+    .range(d3.schemeTableau10);
+    // console.log(color("Sub-Saharan Africa"));
+    // console.log(color("South Asia"));
+    // console.log(color("East Asia & Pacific"));
     
     var circles = svg.selectAll("circle")
     .data(data)
     .enter()
     .append("circle")
-    .attr("fill", "orange")
+    .attr("fill", function(d) {
+        return color(d.Region);
+    })
+    .attr("opacity", "70%")
     .attr("cx", function(d) {
         return xScale(d.Income);
     })
@@ -98,7 +108,10 @@ async function renderScatterPlot() {
         return 16;
     });
 
-    d3.scaleOrdinal(d3.schemeTableau10)
+    // const color = d3.scaleOrdinal()
+    //             .domain(data, d => d.Region)
+    //             .range(d3.schemeTableau10);
+    // console.log(color("Sub-Saharan Africa"));
 }
 
 renderScatterPlot();
