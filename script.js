@@ -141,10 +141,6 @@ async function renderScatterPlot() {
         .text(d => d)
         .attr('x', width - 110)
         .attr('y', (d, i) => height + i * 20 - 130)
-        .attr('font-size', '10px')
-        .attr('fill', '#6d6d6d')
-        .attr('font-family', 'Lucida Grande')
-        .attr('text-anchor', 'beginning');
 }
 
 renderScatterPlot();
